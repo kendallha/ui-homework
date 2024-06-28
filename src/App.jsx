@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState } from 'react'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Device</th>
+          <th>Path</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>Available</td>
+          </tr>
+          <tr>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>Available</td>
+          </tr>
+          <tr>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>Pending</td>
+          </tr>
+          <tr>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>smss.exe</td>
+            <td>Unavailable</td>
+          </tr>
+        </tbody>
+      </table>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
