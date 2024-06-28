@@ -1,46 +1,15 @@
-// import { useState } from 'react'
-import './App.css';
+import Table from './components/Table/Table';
+import styled from 'styled-components';
 
+const StyledApp = styled.main`
+  display: flex;
+  justify-content: center;
+`;
 function App() {
-  // const [count, setCount] = useState(0);
-
   return (
-    <>
-      <table>
-        <thead>
-          <th>Name</th>
-          <th>Device</th>
-          <th>Path</th>
-          <th>Status</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>Pending</td>
-          </tr>
-          <tr>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>smss.exe</td>
-            <td>Unavailable</td>
-          </tr>
-        </tbody>
-      </table>
-    </>
+    <StyledApp>
+      <Table />
+    </StyledApp>
   );
 }
 
