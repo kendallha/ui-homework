@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
+import './TableHeaders.css';
 
 const TableHeaders = ({ columns }) => {
   return (
     <thead>
-      {columns.map((column) => (
-        <th key={column.value}>{column.header}</th>
-      ))}
+      <tr>
+        {columns.map((column, index) => (
+          <th scope="col" key={index}>
+            {column}
+          </th>
+        ))}
+      </tr>
     </thead>
   );
 };

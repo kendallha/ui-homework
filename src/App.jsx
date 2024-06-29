@@ -1,16 +1,9 @@
 import Table from './components/Table/Table';
-import styled from 'styled-components';
 
-const StyledApp = styled.main`
-  display: flex;
-  justify-content: center;
-`;
-function App() {
-  return (
-    <StyledApp>
-      <Table />
-    </StyledApp>
-  );
-}
+import './App.css';
+
+const App = () => {
+  return <Table />;
+};
 
 export default App;
