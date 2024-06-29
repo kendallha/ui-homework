@@ -1,16 +1,29 @@
 import PropTypes from 'prop-types';
-import './TableHeaders.css';
+import styled from 'styled-components';
+
+const StyledRow = styled.tr`
+  border-top: 1px solid #ededed;
+`;
+
+const StyledColumnHeader = styled.th`
+  padding: 1em;
+  padding-left: ${(props) => (props.isStatus ? '3em' : '1em')};
+  text-align: left;
+  text-transform: capitalize;
+`;
 
 const TableHeaders = ({ columns }) => {
+  const STATUS = 'status';
   return (
     <thead>
-      <tr>
-        {columns.map((column, index) => (
-          <th scope="col" key={index}>
+      <StyledRow>
+        <StyledColumnHeader colSpan="1"></StyledColumnHeader>
+        {columns.map((column) => (
+          <StyledColumnHeader isStatus={column === STATUS} scope="col" key={column}>
             {column}
-          </th>
+          </StyledColumnHeader>
         ))}
-      </tr>
+      </StyledRow>
     </thead>
   );
 };

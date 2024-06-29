@@ -5,7 +5,22 @@ import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
 import DownloadButton from '../DownloadButton/DownloadButton';
 import { tableData } from '../../data/tableData';
 import { filterAvailableDownloads } from '../../utils/filterAvailableDownloads';
-import './Table.css';
+import styled from 'styled-components';
+
+const StyledTableSection = styled.section`
+  background: #ffffff;
+  box-shadow: 2px 4px #e3e3e3;
+  border: 1px solid #e3e3e3;
+  padding-top: 10px;
+`;
+
+const StyledTableActions = styled.header`
+  display: flex;
+`;
+
+const StyledTable = styled.table`
+  border-collapse: collapse;
+`;
 
 const Table = () => {
   const [selected, setSelected] = useState([]);
@@ -39,22 +54,21 @@ const Table = () => {
   };
 
   return (
-    <>
-      <div className="table-actions">
+    <StyledTableSection>
+      <StyledTableActions>
         <SelectAllDisplay
           handleSelectAll={handleSelectAll}
           availableDownloads={availableDownloads.length}
           totalSelectedRows={selected.length}
         />
         <DownloadButton handleDownloadClick={handleDownloadClick} selected={selected} />
-      </div>
-      <table>
+      </StyledTableActions>
+      <StyledTable>
         <TableHeaders columns={columns} />
         <tbody>
-          {/* TODO Fix key to not be index  */}
-          {tableData.map((entry, index) => (
+          {tableData.map((entry) => (
             <TableRow
-              key={index}
+              key={entry.name}
               columns={columns}
               handleSelectRow={handleSelectRow}
               rowEntry={entry}
@@ -62,8 +76,8 @@ const Table = () => {
             />
           ))}
         </tbody>
-      </table>
-    </>
+      </StyledTable>
+    </StyledTableSection>
   );
 };
 
