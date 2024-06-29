@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './TableRow.css';
 
-const TableRow = ({ columns, handleSelectRow, rowEntry, selected }) => {
+const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
   const AVAILABLE_STATUS = 'available';
 
   const handleChange = (e) => {
@@ -13,7 +13,7 @@ const TableRow = ({ columns, handleSelectRow, rowEntry, selected }) => {
       <input
         disabled={rowEntry.status !== AVAILABLE_STATUS}
         type="checkbox"
-        checked={selected.includes(rowEntry)}
+        checked={isChecked}
         onChange={handleChange}
       />
       {columns.map((column) => (
@@ -29,5 +29,5 @@ TableRow.propTypes = {
   columns: PropTypes.array,
   handleSelectRow: PropTypes.func,
   rowEntry: PropTypes.object,
-  selected: PropTypes.array,
+  isChecked: PropTypes.bool,
 };

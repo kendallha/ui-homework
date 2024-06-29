@@ -1,19 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const SelectAllDisplay = ({ handleSelectAll, selectedRows, tableData }) => {
+const SelectAllDisplay = ({ handleSelectAll, availableDownloads, totalSelectedRows }) => {
+  const [isSelected, setIsSelected] = useState(availableDownloads === totalSelectedRows);
+
   useEffect(() => {
     const checkbox = document.getElementById('select-all');
-    if (selectedRows.length === 0) {
-      checkbox.checked = false;
+    if (totalSelectedRows === 0) {
       checkbox.indeterminate = false;
-    } else if (selectedRows.length === tableData.length) {
-      checkbox.checked = true;
+      setIsSelected(false);
+    } else if (totalSelectedRows === availableDownloads) {
       checkbox.indeterminate = false;
+      setIsSelected(true);
     } else {
       checkbox.indeterminate = true;
+      setIsSelected(false);
     }
-  }, [selectedRows, tableData]);
+  }, [availableDownloads, totalSelectedRows]);
 
   const handleChange = (e) => {
     if (e.target.checked) {
@@ -24,8 +27,8 @@ const SelectAllDisplay = ({ handleSelectAll, selectedRows, tableData }) => {
   };
   return (
     <>
-      <input id="select-all" type="checkbox" onChange={handleChange} />
-      <p>{selectedRows.length} selected</p>
+      <input id="select-all" checked={isSelected} type="checkbox" onChange={handleChange} />
+      <p>{totalSelectedRows} selected</p>
     </>
   );
 };
@@ -34,6 +37,6 @@ export default SelectAllDisplay;
 
 SelectAllDisplay.propTypes = {
   handleSelectAll: PropTypes.func,
-  selectedRows: PropTypes.array,
-  tableData: PropTypes.array,
+  totalSelectedRows: PropTypes.number,
+  availableDownloads: PropTypes.number,
 };

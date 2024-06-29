@@ -2,7 +2,6 @@ import icon from '../../assets/download.svg';
 import PropTypes from 'prop-types';
 
 const DownloadButton = ({ handleDownloadClick, selected }) => {
-  console.log('selected', selected);
   return (
     <>
       <button disabled={!selected.length} type="button" onClick={handleDownloadClick}>
