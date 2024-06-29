@@ -28,11 +28,19 @@ const Table = () => {
     }
   };
 
+  const handleDownloadClick = () => {
+    const selectedInfo = selected.map((entry) => {
+      return `Path: ${entry.path} Device: ${entry.device}`;
+    });
+    // TODO Add custom Alert component
+    alert(selectedInfo);
+  };
+
   return (
     <>
       <div className="table-actions">
         <SelectAllDisplay handleSelectAll={handleSelectAll} selectedRows={selected} tableData={tableData} />
-        <DownloadButton />
+        <DownloadButton handleDownloadClick={handleDownloadClick} selected={selected} />
       </div>
       <table>
         <TableHeaders columns={columns} />
