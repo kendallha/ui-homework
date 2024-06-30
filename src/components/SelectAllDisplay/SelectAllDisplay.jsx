@@ -22,7 +22,7 @@ const SelectAllDisplay = ({ handleSelectAll, numberAvailableDownloads, numberSel
   const [isSelected, setIsSelected] = useState(numberAvailableDownloads === numberSelectedRows);
 
   useEffect(() => {
-    const checkbox = document.getElementById('select-all');
+    const checkbox = document.getElementById('selectAllCheckbox');
     if (numberSelectedRows === 0) {
       checkbox.indeterminate = false;
       setIsSelected(false);
@@ -45,7 +45,13 @@ const SelectAllDisplay = ({ handleSelectAll, numberAvailableDownloads, numberSel
 
   return (
     <StyledSelectAllSection>
-      <StyledInput id="select-all" checked={isSelected} type="checkbox" onChange={handleChange} />
+      <StyledInput
+        aria-label="Select All Checkbox"
+        checked={isSelected}
+        id="selectAllCheckbox"
+        onChange={handleChange}
+        type="checkbox"
+      />
       {numberSelectedRows ? <p>Selected {numberSelectedRows}</p> : <p>None Selected</p>}
     </StyledSelectAllSection>
   );

@@ -5,8 +5,8 @@ import TableHeaders from '../TableHeaders/TableHeaders';
 import TableRow from '../TableRow/TableRow';
 import { filterAvailableDownloads } from '../../utils/filterAvailableDownloads';
 import { getColumnsFromData } from '../../utils/getColumnsFromData';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const StyledTableSection = styled.section`
   background: #ffffff;
@@ -54,7 +54,7 @@ const Table = ({ tableData }) => {
       })
       .join('');
 
-    alert(`Downloaded: ${selectedInfo}`);
+    alert(`Confirm to download these files: ${selectedInfo}`);
   };
 
   return (

@@ -49,16 +49,18 @@ const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
     <StyledRow $isChecked={isChecked} onClick={handleRowClick}>
       <StyledCell>
         <StyledInput
-          disabled={rowEntry.status !== AVAILABLE_STATUS}
-          type="checkbox"
+          aria-label={`${rowEntry.name} Checkbox`}
           checked={isChecked}
+          disabled={rowEntry.status !== AVAILABLE_STATUS}
+          id={`${rowEntry.name}Checkbox`}
           onChange={handleRowClick}
+          type="checkbox"
         />
       </StyledCell>
       {columns.map((column) =>
         rowEntry[column] === AVAILABLE_STATUS ? (
           <StyledAvailableCell key={rowEntry[column]}>
-            <AvailableIcon />
+            <AvailableIcon aria-hidden="true" />
             {rowEntry[column]}
           </StyledAvailableCell>
         ) : (

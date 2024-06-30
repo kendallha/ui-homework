@@ -1,6 +1,6 @@
 import Table from '../Table/Table';
-import styled from 'styled-components';
 import { tableData } from '../../data/tableData';
+import styled from 'styled-components';
 
 const StyledMain = styled.main`
   overflow-x: scroll;

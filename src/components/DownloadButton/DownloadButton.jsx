@@ -13,17 +13,17 @@ const StyledButton = styled.button`
 `;
 
 const StyledIcon = styled.img`
-  cursor: ${(props) => (props.disabled ? 'inherit' : 'pointer')};
-  filter: ${(props) => (props.disabled ? 'brightness(0.05) contrast(0.05);' : 'none')};
+  cursor: ${(props) => (props.$disabled ? 'inherit' : 'pointer')};
+  filter: ${(props) => (props.$disabled ? 'brightness(0.05) contrast(0.05);' : 'none')};
 `;
 
 const DownloadButton = ({ handleDownloadClick, isDisabled }) => {
   return (
     <StyledDownloadButtonSection>
-      <StyledButton disabled={isDisabled} type="button" onClick={handleDownloadClick}>
-        <StyledIcon disabled={isDisabled} src={icon} alt="download-icon" />
+      <StyledButton aria-label="download" disabled={isDisabled} type="button" onClick={handleDownloadClick}>
+        <StyledIcon $disabled={isDisabled} src={icon} alt="Download Icon" width="24" height="24" />
       </StyledButton>
-      <label>Download Selected</label>
+      <span aria-hidden="true">Download Selected</span>
     </StyledDownloadButtonSection>
   );
 };
