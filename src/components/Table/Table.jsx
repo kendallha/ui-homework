@@ -11,6 +11,7 @@ const StyledTableSection = styled.section`
   background: #ffffff;
   box-shadow: 2px 4px #e3e3e3;
   border: 1px solid #e3e3e3;
+  width: fit-content;
 `;
 
 const StyledTableActions = styled.header`
@@ -46,38 +47,42 @@ const Table = () => {
   };
 
   const handleDownloadClick = () => {
-    const selectedInfo = selected.map((entry) => {
-      return `Path: ${entry.path} Device: ${entry.device}`;
-    });
-    // TODO Add custom Alert component
-    alert(selectedInfo);
+    const selectedInfo = selected
+      .map((entry) => {
+        return `\n\nPath: ${entry.path}\nDevice: ${entry.device} `;
+      })
+      .join('');
+
+    alert(`Downloaded: ${selectedInfo}`);
   };
 
   return (
-    <StyledTableSection>
-      <StyledTableActions>
-        <SelectAllDisplay
-          handleSelectAll={handleSelectAll}
-          availableDownloads={availableDownloads.length}
-          totalSelectedRows={selected.length}
-        />
-        <DownloadButton handleDownloadClick={handleDownloadClick} selected={selected} />
-      </StyledTableActions>
-      <StyledTable>
-        <TableHeaders columns={columns} />
-        <tbody>
-          {tableData.map((entry) => (
-            <TableRow
-              key={entry.name}
-              columns={columns}
-              handleSelectRow={handleSelectRow}
-              rowEntry={entry}
-              isChecked={selected.includes(entry)}
-            />
-          ))}
-        </tbody>
-      </StyledTable>
-    </StyledTableSection>
+    <>
+      <StyledTableSection>
+        <StyledTableActions>
+          <SelectAllDisplay
+            handleSelectAll={handleSelectAll}
+            availableDownloads={availableDownloads.length}
+            totalSelectedRows={selected.length}
+          />
+          <DownloadButton handleDownloadClick={handleDownloadClick} selected={selected} />
+        </StyledTableActions>
+        <StyledTable>
+          <TableHeaders columns={columns} />
+          <tbody>
+            {tableData.map((entry) => (
+              <TableRow
+                key={entry.name}
+                columns={columns}
+                handleSelectRow={handleSelectRow}
+                rowEntry={entry}
+                isChecked={selected.includes(entry)}
+              />
+            ))}
+          </tbody>
+        </StyledTable>
+      </StyledTableSection>
+    </>
   );
 };
 

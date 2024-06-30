@@ -23,10 +23,14 @@ body {
   background-color: #F9F9F9;
   color: #3B3745;
   display: flex;
-  margin-top: 5%;
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  #root {
+    max-width: 100%;
+    margin-top: 5%;
+  }
 }`;
 
 export default GlobalStyle;

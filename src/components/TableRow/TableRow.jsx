@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledRow = styled.tr`
   border-top: 1px solid #e6e6e6;
-  background: ${(props) => (props.isChecked ? '#EEEEEE' : 'inherit')};
+  background: ${(props) => (props.$isChecked ? '#EEEEEE' : 'inherit')};
   font-size: 12px;
   &:hover {
     background-color: #f5f5f5;
@@ -12,8 +12,8 @@ const StyledRow = styled.tr`
 `;
 const StyledCell = styled.td`
   padding: 0.7rem 3rem;
-  padding-left: ${(props) => (props.isStatus ? '3rem' : '1rem')};
-  text-transform: ${(props) => (props.isStatus ? 'capitalize' : 'none')};
+  padding-left: ${(props) => (props.$isStatus ? '3rem' : '1rem')};
+  text-transform: ${(props) => (props.$isStatus ? 'capitalize' : 'none')};
 `;
 
 const StyledAvailableCell = styled(StyledCell)`
@@ -46,7 +46,7 @@ const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
   };
 
   return (
-    <StyledRow isChecked={isChecked} onClick={handleRowClick}>
+    <StyledRow $isChecked={isChecked} onClick={handleRowClick}>
       <StyledCell>
         <StyledInput
           disabled={rowEntry.status !== AVAILABLE_STATUS}
@@ -62,7 +62,7 @@ const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
             {rowEntry[column]}
           </StyledAvailableCell>
         ) : (
-          <StyledCell isStatus={column === STATUS} key={rowEntry[column]}>
+          <StyledCell $isStatus={column === STATUS} key={rowEntry[column]}>
             {rowEntry[column]}
           </StyledCell>
         ),

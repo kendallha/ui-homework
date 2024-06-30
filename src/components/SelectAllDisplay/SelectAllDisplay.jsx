@@ -42,6 +42,7 @@ const SelectAllDisplay = ({ handleSelectAll, availableDownloads, totalSelectedRo
       handleSelectAll(false);
     }
   };
+
   return (
     <StyledSelectAllSection>
       <StyledInput id="select-all" checked={isSelected} type="checkbox" onChange={handleChange} />
