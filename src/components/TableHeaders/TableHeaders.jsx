@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 const StyledRow = styled.tr`
   border-top: 1px solid #ededed;
+  font-size: 14px;
 `;
 
 const StyledColumnHeader = styled.th`
-  padding: 1em;
-  padding-left: ${(props) => (props.isStatus ? '3em' : '1em')};
+  font-weight: normal;
+  padding: 1rem 3rem;
+  padding-left: ${(props) => (props.isStatus ? '3rem' : '1rem')};
   text-align: left;
   text-transform: capitalize;
 `;

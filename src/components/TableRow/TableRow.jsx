@@ -2,44 +2,57 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledRow = styled.tr`
-  border-top: 1px solid #ededed;
+  border-top: 1px solid #e6e6e6;
+  background: ${(props) => (props.isChecked ? '#EEEEEE' : 'inherit')};
+  font-size: 12px;
+  &:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
 `;
 const StyledCell = styled.td`
-  padding: 1em;
-  padding-left: ${(props) => (props.isStatus ? '3em' : '1em')};
+  padding: 0.7rem 3rem;
+  padding-left: ${(props) => (props.isStatus ? '3rem' : '1rem')};
   text-transform: ${(props) => (props.isStatus ? 'capitalize' : 'none')};
 `;
 
 const StyledAvailableCell = styled(StyledCell)`
   display: flex;
-  padding: 1em;
   text-transform: capitalize;
 `;
 
 const AvailableIcon = styled.div`
   background: #7dd335;
-  height: 1em;
-  width: 1em;
+  height: 1rem;
+  width: 1rem;
   border-radius: 50%;
   align-self: center;
-  margin-right: 1em;
+  margin-right: 1rem;
+`;
+
+const StyledInput = styled.input`
+  cursor: pointer;
+  height: 1rem;
+  width: 1rem;
 `;
 const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
   const AVAILABLE_STATUS = 'available';
   const STATUS = 'status';
 
-  const handleChange = (e) => {
-    handleSelectRow(e.target.checked, rowEntry);
+  const handleRowClick = () => {
+    if (rowEntry.status === AVAILABLE_STATUS) {
+      handleSelectRow(!isChecked, rowEntry);
+    }
   };
 
   return (
-    <StyledRow>
+    <StyledRow isChecked={isChecked} onClick={handleRowClick}>
       <StyledCell>
-        <input
+        <StyledInput
           disabled={rowEntry.status !== AVAILABLE_STATUS}
           type="checkbox"
           checked={isChecked}
-          onChange={handleChange}
+          onChange={handleRowClick}
         />
       </StyledCell>
       {columns.map((column) =>

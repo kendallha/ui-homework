@@ -1,5 +1,22 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledSelectAllSection = styled.div`
+  display: flex;
+  align-items: center;
+  min-width: 20%;
+`;
+
+const StyledInput = styled.input`
+  margin-right: 1rem;
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+  &:indeterminate + &:before {
+    background: #0075ff;
+  }
+`;
 
 const SelectAllDisplay = ({ handleSelectAll, availableDownloads, totalSelectedRows }) => {
   const [isSelected, setIsSelected] = useState(availableDownloads === totalSelectedRows);
@@ -26,10 +43,10 @@ const SelectAllDisplay = ({ handleSelectAll, availableDownloads, totalSelectedRo
     }
   };
   return (
-    <>
-      <input id="select-all" checked={isSelected} type="checkbox" onChange={handleChange} />
-      <p>{totalSelectedRows} selected</p>
-    </>
+    <StyledSelectAllSection>
+      <StyledInput id="select-all" checked={isSelected} type="checkbox" onChange={handleChange} />
+      {totalSelectedRows ? <p>Selected {totalSelectedRows}</p> : <p>None Selected</p>}
+    </StyledSelectAllSection>
   );
 };
 

@@ -11,11 +11,11 @@ const StyledTableSection = styled.section`
   background: #ffffff;
   box-shadow: 2px 4px #e3e3e3;
   border: 1px solid #e3e3e3;
-  padding-top: 10px;
 `;
 
 const StyledTableActions = styled.header`
   display: flex;
+  padding: 1.5rem 1rem;
 `;
 
 const StyledTable = styled.table`
