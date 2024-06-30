@@ -10,6 +10,10 @@
 
 ## Project Requirements
 
+### Mock Up
+![image001](https://github.com/kendallha/ui-homework/assets/25498241/bc539ce2-0087-426e-80cd-163ef3cabcb4)
+
+### Requirements
 - Only those that have a status of "available" are currently able to be downloaded. Your implementation should manage this.
 - The select-all checkbox should be in an unselected state if no items are selected.
 - The select-all checkbox should be in a selected state if all items are selected.
@@ -22,7 +26,6 @@
 - Precise/exact HTML formatting/styling to match the mockup is not required however rows should change colour when selected and on hover.
 
 ## Technologies Used
-
 - Vite
 - React
 - Styled Components
@@ -31,7 +34,6 @@
 - Jest
 
 ## Installation
-
 1. Clone down this [repo](https://github.com/kendallha/ui-homework)
 2. `cd` into project directory
 3. Run `npm i` to install all project dependencies
@@ -39,12 +41,10 @@
 5. Navigate to http://localhost:5173
 
 ## Testing
-
 - Run `npm test` to run the test suite
 - Tested using React Testing Library, Vitest, and Jest
 
 ## Accessibility
-
 - 100% Lighthouse accessibility score
 
 ## Walkthrough
