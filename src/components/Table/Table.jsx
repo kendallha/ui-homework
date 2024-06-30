@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import DownloadButton from '../DownloadButton/DownloadButton';
 import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
 import TableHeaders from '../TableHeaders/TableHeaders';
@@ -26,17 +26,19 @@ const StyledTable = styled.table`
 
 const Table = ({ tableData }) => {
   const [selected, setSelected] = useState([]);
-  // TODO should I wrap these in useMemo? I would also need to memoize tableData for this to do anything
-  const availableDownloads = filterAvailableDownloads(tableData);
-  const columns = getColumnsFromData(tableData);
+  // Is this memoization really necessary?
+  const memoizedTableData = useMemo(() => tableData, [tableData]);
+  const availableDownloads = useMemo(() => filterAvailableDownloads(memoizedTableData), [memoizedTableData]);
+  const columns = useMemo(() => getColumnsFromData(memoizedTableData), [memoizedTableData]);
 
-  const handleSelectRow = (isSelected, entry) => {
-    if (isSelected) {
-      setSelected([...selected, entry]);
-    } else {
-      const newSelected = selected.filter((item) => item.name !== entry.name);
-      setSelected(newSelected);
-    }
+  const handleDownloadClick = () => {
+    const selectedInfo = selected
+      .map((entry) => {
+        return `\n\nPath: ${entry.path}\nDevice: ${entry.device} `;
+      })
+      .join('');
+
+    alert(`Confirm to download these files: ${selectedInfo}`);
   };
 
   const handleSelectAll = (isSelected) => {
@@ -47,14 +49,13 @@ const Table = ({ tableData }) => {
     }
   };
 
-  const handleDownloadClick = () => {
-    const selectedInfo = selected
-      .map((entry) => {
-        return `\n\nPath: ${entry.path}\nDevice: ${entry.device} `;
-      })
-      .join('');
-
-    alert(`Confirm to download these files: ${selectedInfo}`);
+  const handleSelectRow = (isSelected, entry) => {
+    if (isSelected) {
+      setSelected([...selected, entry]);
+    } else {
+      const newSelected = selected.filter((item) => item.name !== entry.name);
+      setSelected(newSelected);
+    }
   };
 
   return (

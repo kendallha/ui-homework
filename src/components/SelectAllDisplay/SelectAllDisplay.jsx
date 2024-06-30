@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -20,17 +20,17 @@ const StyledInput = styled.input`
 
 const SelectAllDisplay = ({ handleSelectAll, numberAvailableDownloads, numberSelectedRows }) => {
   const [isSelected, setIsSelected] = useState(numberAvailableDownloads === numberSelectedRows);
+  const checkboxRef = useRef();
 
   useEffect(() => {
-    const checkbox = document.getElementById('selectAllCheckbox');
     if (numberSelectedRows === 0) {
-      checkbox.indeterminate = false;
+      checkboxRef.current.indeterminate = false;
       setIsSelected(false);
     } else if (numberSelectedRows === numberAvailableDownloads) {
-      checkbox.indeterminate = false;
+      checkboxRef.current.indeterminate = false;
       setIsSelected(true);
     } else {
-      checkbox.indeterminate = true;
+      checkboxRef.current.indeterminate = true;
       setIsSelected(false);
     }
   }, [numberAvailableDownloads, numberSelectedRows]);
@@ -50,6 +50,7 @@ const SelectAllDisplay = ({ handleSelectAll, numberAvailableDownloads, numberSel
         checked={isSelected}
         id="selectAllCheckbox"
         onChange={handleChange}
+        ref={checkboxRef}
         type="checkbox"
       />
       {numberSelectedRows ? <p>Selected {numberSelectedRows}</p> : <p>None Selected</p>}

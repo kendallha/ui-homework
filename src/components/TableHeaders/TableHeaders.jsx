@@ -1,3 +1,4 @@
+import { STATUS } from '../../constants';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -15,7 +16,6 @@ const StyledColumnHeader = styled.th`
 `;
 
 const TableHeaders = ({ columns }) => {
-  const STATUS = 'status';
   return (
     <thead>
       <StyledRow>

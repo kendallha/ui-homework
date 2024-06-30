@@ -1,3 +1,4 @@
+import { AVAILABLE_STATUS, STATUS } from '../../constants';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -35,10 +36,8 @@ const StyledInput = styled.input`
   height: 1rem;
   width: 1rem;
 `;
-const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
-  const AVAILABLE_STATUS = 'available';
-  const STATUS = 'status';
 
+const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
   const handleRowClick = () => {
     if (rowEntry.status === AVAILABLE_STATUS) {
       handleSelectRow(!isChecked, rowEntry);
