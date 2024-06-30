@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import DownloadButton from '../DownloadButton/DownloadButton';
+import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
 import TableHeaders from '../TableHeaders/TableHeaders';
 import TableRow from '../TableRow/TableRow';
-import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
-import DownloadButton from '../DownloadButton/DownloadButton';
-import { tableData } from '../../data/tableData';
 import { filterAvailableDownloads } from '../../utils/filterAvailableDownloads';
+import { getColumnsFromData } from '../../utils/getColumnsFromData';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledTableSection = styled.section`
   background: #ffffff;
@@ -23,11 +24,11 @@ const StyledTable = styled.table`
   border-collapse: collapse;
 `;
 
-const Table = () => {
+const Table = ({ tableData }) => {
   const [selected, setSelected] = useState([]);
+  // TODO should I wrap these in useMemo? I would also need to memoize tableData for this to do anything
   const availableDownloads = filterAvailableDownloads(tableData);
-  // TODO write function to get columns from data set
-  const columns = ['name', 'device', 'path', 'status'];
+  const columns = getColumnsFromData(tableData);
 
   const handleSelectRow = (isSelected, entry) => {
     if (isSelected) {
@@ -62,10 +63,10 @@ const Table = () => {
         <StyledTableActions>
           <SelectAllDisplay
             handleSelectAll={handleSelectAll}
-            availableDownloads={availableDownloads.length}
-            totalSelectedRows={selected.length}
+            numberAvailableDownloads={availableDownloads.length}
+            numberSelectedRows={selected.length}
           />
-          <DownloadButton handleDownloadClick={handleDownloadClick} selected={selected} />
+          <DownloadButton handleDownloadClick={handleDownloadClick} isDisabled={!selected.length} />
         </StyledTableActions>
         <StyledTable>
           <TableHeaders columns={columns} />
@@ -87,3 +88,7 @@ const Table = () => {
 };
 
 export default Table;
+
+Table.propTypes = {
+  tableData: PropTypes.array,
+};

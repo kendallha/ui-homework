@@ -17,11 +17,11 @@ const StyledIcon = styled.img`
   filter: ${(props) => (props.disabled ? 'brightness(0.05) contrast(0.05);' : 'none')};
 `;
 
-const DownloadButton = ({ handleDownloadClick, selected }) => {
+const DownloadButton = ({ handleDownloadClick, isDisabled }) => {
   return (
     <StyledDownloadButtonSection>
-      <StyledButton disabled={!selected.length} type="button" onClick={handleDownloadClick}>
-        <StyledIcon disabled={!selected.length} src={icon} alt="download-icon" />
+      <StyledButton disabled={isDisabled} type="button" onClick={handleDownloadClick}>
+        <StyledIcon disabled={isDisabled} src={icon} alt="download-icon" />
       </StyledButton>
       <label>Download Selected</label>
     </StyledDownloadButtonSection>
@@ -32,5 +32,5 @@ export default DownloadButton;
 
 DownloadButton.propTypes = {
   handleDownloadClick: PropTypes.func,
-  selected: PropTypes.array,
+  isDisabled: PropTypes.bool,
 };

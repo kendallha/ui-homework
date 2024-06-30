@@ -18,22 +18,22 @@ const StyledInput = styled.input`
   }
 `;
 
-const SelectAllDisplay = ({ handleSelectAll, availableDownloads, totalSelectedRows }) => {
-  const [isSelected, setIsSelected] = useState(availableDownloads === totalSelectedRows);
+const SelectAllDisplay = ({ handleSelectAll, numberAvailableDownloads, numberSelectedRows }) => {
+  const [isSelected, setIsSelected] = useState(numberAvailableDownloads === numberSelectedRows);
 
   useEffect(() => {
     const checkbox = document.getElementById('select-all');
-    if (totalSelectedRows === 0) {
+    if (numberSelectedRows === 0) {
       checkbox.indeterminate = false;
       setIsSelected(false);
-    } else if (totalSelectedRows === availableDownloads) {
+    } else if (numberSelectedRows === numberAvailableDownloads) {
       checkbox.indeterminate = false;
       setIsSelected(true);
     } else {
       checkbox.indeterminate = true;
       setIsSelected(false);
     }
-  }, [availableDownloads, totalSelectedRows]);
+  }, [numberAvailableDownloads, numberSelectedRows]);
 
   const handleChange = (e) => {
     if (e.target.checked) {
@@ -46,7 +46,7 @@ const SelectAllDisplay = ({ handleSelectAll, availableDownloads, totalSelectedRo
   return (
     <StyledSelectAllSection>
       <StyledInput id="select-all" checked={isSelected} type="checkbox" onChange={handleChange} />
-      {totalSelectedRows ? <p>Selected {totalSelectedRows}</p> : <p>None Selected</p>}
+      {numberSelectedRows ? <p>Selected {numberSelectedRows}</p> : <p>None Selected</p>}
     </StyledSelectAllSection>
   );
 };
@@ -55,6 +55,6 @@ export default SelectAllDisplay;
 
 SelectAllDisplay.propTypes = {
   handleSelectAll: PropTypes.func,
-  totalSelectedRows: PropTypes.number,
-  availableDownloads: PropTypes.number,
+  numberAvailableDownloads: PropTypes.number,
+  numberSelectedRows: PropTypes.number,
 };

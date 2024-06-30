@@ -1,18 +1,10 @@
-import Table from './components/Table/Table';
 import GlobalStyle from './GlobalStyles';
-import styled from 'styled-components';
-// import './App.css';
-
-const StyledMain = styled.main`
-  overflow-x: scroll;
-`;
+import TableContainer from './components/TableContainer/TableContainer';
 
 const App = () => (
   <>
     <GlobalStyle />
-    <StyledMain>
-      <Table />
-    </StyledMain>
+    <TableContainer />
   </>
 );
 
