@@ -15,12 +15,12 @@ const StyledColumnHeader = styled.th`
   text-transform: capitalize;
 `;
 
-const TableHeaders = ({ columns }) => {
+const TableHeaders = ({ columnNames }) => {
   return (
     <thead>
       <StyledRow>
         <StyledColumnHeader colSpan="1"></StyledColumnHeader>
-        {columns.map((column) => (
+        {columnNames.map((column) => (
           <StyledColumnHeader $isStatus={column === STATUS} scope="col" key={column}>
             {column}
           </StyledColumnHeader>
@@ -33,5 +33,5 @@ const TableHeaders = ({ columns }) => {
 export default TableHeaders;
 
 TableHeaders.propTypes = {
-  columns: PropTypes.array,
+  columnNames: PropTypes.array,
 };

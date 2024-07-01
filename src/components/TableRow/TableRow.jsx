@@ -37,7 +37,7 @@ const StyledInput = styled.input`
   width: 1rem;
 `;
 
-const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
+const TableRow = ({ columnNames, handleSelectRow, rowEntry, isChecked }) => {
   const handleRowClick = () => {
     if (rowEntry.status === AVAILABLE_STATUS) {
       handleSelectRow(!isChecked, rowEntry);
@@ -56,7 +56,7 @@ const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
           type="checkbox"
         />
       </StyledCell>
-      {columns.map((column) =>
+      {columnNames.map((column) =>
         rowEntry[column] === AVAILABLE_STATUS ? (
           <StyledAvailableCell key={rowEntry[column]}>
             <AvailableIcon aria-hidden="true" />
@@ -75,7 +75,7 @@ const TableRow = ({ columns, handleSelectRow, rowEntry, isChecked }) => {
 export default TableRow;
 
 TableRow.propTypes = {
-  columns: PropTypes.array,
+  columnNames: PropTypes.array,
   handleSelectRow: PropTypes.func,
   rowEntry: PropTypes.object,
   isChecked: PropTypes.bool,

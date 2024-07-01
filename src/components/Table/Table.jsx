@@ -1,10 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import DownloadButton from '../DownloadButton/DownloadButton';
 import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
 import TableHeaders from '../TableHeaders/TableHeaders';
 import TableRow from '../TableRow/TableRow';
-import { filterAvailableDownloads } from '../../utils/filterAvailableDownloads';
-import { getColumnsFromData } from '../../utils/getColumnsFromData';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -24,12 +22,8 @@ const StyledTable = styled.table`
   border-collapse: collapse;
 `;
 
-const Table = ({ tableData }) => {
+const Table = ({ availableDownloads, columnNames, tableData }) => {
   const [selected, setSelected] = useState([]);
-  // Is this memoization really necessary?
-  const memoizedTableData = useMemo(() => tableData, [tableData]);
-  const availableDownloads = useMemo(() => filterAvailableDownloads(memoizedTableData), [memoizedTableData]);
-  const columns = useMemo(() => getColumnsFromData(memoizedTableData), [memoizedTableData]);
 
   const handleDownloadClick = () => {
     const selectedInfo = selected
@@ -70,12 +64,12 @@ const Table = ({ tableData }) => {
           <DownloadButton handleDownloadClick={handleDownloadClick} isDisabled={!selected.length} />
         </StyledTableActions>
         <StyledTable>
-          <TableHeaders columns={columns} />
+          <TableHeaders columnNames={columnNames} />
           <tbody>
             {tableData.map((entry) => (
               <TableRow
                 key={entry.name}
-                columns={columns}
+                columnNames={columnNames}
                 handleSelectRow={handleSelectRow}
                 rowEntry={entry}
                 isChecked={selected.includes(entry)}
@@ -91,5 +85,7 @@ const Table = ({ tableData }) => {
 export default Table;
 
 Table.propTypes = {
+  availableDownloads: PropTypes.array,
+  columnNames: PropTypes.array,
   tableData: PropTypes.array,
 };
