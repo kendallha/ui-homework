@@ -9,12 +9,23 @@ const StyledDownloadButtonSection = styled.div`
 const StyledButton = styled.button`
   border: none;
   background: none;
+  cursor: ${(props) => (props.disabled ? 'inherit' : 'pointer')};
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
   margin-right: 5px;
 `;
 
+const StyledButtonLabel = styled.span`
+  align-content: center;
+  height: 100%;
+`;
+
 const StyledIcon = styled.img`
-  cursor: ${(props) => (props.$disabled ? 'inherit' : 'pointer')};
   filter: ${(props) => (props.$disabled ? 'brightness(0.05) contrast(0.05);' : 'none')};
+  margin-right: 5px;
 `;
 
 const DownloadButton = ({ handleDownloadClick, isDisabled }) => {
@@ -22,8 +33,8 @@ const DownloadButton = ({ handleDownloadClick, isDisabled }) => {
     <StyledDownloadButtonSection>
       <StyledButton aria-label="download" disabled={isDisabled} type="button" onClick={handleDownloadClick}>
         <StyledIcon $disabled={isDisabled} src={icon} alt="Download Icon" width="24" height="24" />
+        <StyledButtonLabel>Download Selected</StyledButtonLabel>
       </StyledButton>
-      <span aria-hidden="true">Download Selected</span>
     </StyledDownloadButtonSection>
   );
 };
