@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DownloadButton from '../DownloadButton/DownloadButton';
 import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
-import TableHeaders from '../TableHeaders/TableHeaders';
+import TableColumnHeaders from '../TableColumnHeaders/TableColumnHeaders';
 import TableRow from '../TableRow/TableRow';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -24,16 +24,6 @@ const StyledTable = styled.table`
 
 const Table = ({ availableDownloads, columnNames, tableData }) => {
   const [selected, setSelected] = useState([]);
-
-  const handleDownloadClick = () => {
-    const selectedInfo = selected
-      .map((entry) => {
-        return `\n\nPath: ${entry.path}\nDevice: ${entry.device} `;
-      })
-      .join('');
-
-    alert(`Confirm to download these files: ${selectedInfo}`);
-  };
 
   const handleSelectAll = (isSelected) => {
     if (isSelected) {
@@ -61,10 +51,10 @@ const Table = ({ availableDownloads, columnNames, tableData }) => {
             numberAvailableDownloads={availableDownloads.length}
             numberSelectedRows={selected.length}
           />
-          <DownloadButton handleDownloadClick={handleDownloadClick} isDisabled={!selected.length} />
+          <DownloadButton selectedData={selected} />
         </StyledTableActions>
         <StyledTable>
-          <TableHeaders columnNames={columnNames} />
+          <TableColumnHeaders columnNames={columnNames} />
           <tbody>
             {tableData.map((entry) => (
               <TableRow
