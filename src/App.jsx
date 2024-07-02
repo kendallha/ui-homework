@@ -8,13 +8,13 @@ const StyledMain = styled.main`
 `;
 
 const App = () => {
-  const { availableDownloads, columnNames, data } = useTableData();
+  const { availableDownloads, columnNames } = useTableData();
 
   return (
     <>
       <GlobalStyle />
       <StyledMain>
-        <Table availableDownloads={availableDownloads} columnNames={columnNames} tableData={data} />
+        <Table availableDownloads={availableDownloads} columnNames={columnNames} tableData={[]} />
       </StyledMain>
     </>
   );

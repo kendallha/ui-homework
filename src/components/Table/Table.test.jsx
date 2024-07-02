@@ -60,3 +60,12 @@ describe('Table', () => {
     expect(screen.getByRole('checkbox', { name: /Select All Checkbox/i, indeterminate: false })).toBeInTheDocument();
   });
 });
+
+describe('Table with no data to render', () => {
+  it('should render an error message if there is no data to display', () => {
+    const { getByText } = render(
+      <Table availableDownloads={availableDownloads} columnNames={columnNames} tableData={[]} />,
+    );
+    expect(getByText(/Oh no! We couldn't find any data to display/i)).toBeInTheDocument();
+  });
+});

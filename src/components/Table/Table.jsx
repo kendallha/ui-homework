@@ -22,6 +22,11 @@ const StyledTable = styled.table`
   border-collapse: collapse;
 `;
 
+const StyledErrorMessage = styled.p`
+  margin: 0.5rem;
+  color: red;
+`;
+
 const Table = ({ availableDownloads, columnNames, tableData }) => {
   const [selected, setSelected] = useState([]);
 
@@ -45,14 +50,18 @@ const Table = ({ availableDownloads, columnNames, tableData }) => {
   return (
     <>
       <StyledTableSection>
-        <StyledTableActions>
-          <SelectAllDisplay
-            handleSelectAll={handleSelectAll}
-            numberAvailableDownloads={availableDownloads.length}
-            numberSelectedRows={selected.length}
-          />
-          <DownloadButton selectedData={selected} />
-        </StyledTableActions>
+        {tableData.length ? (
+          <StyledTableActions>
+            <SelectAllDisplay
+              handleSelectAll={handleSelectAll}
+              numberAvailableDownloads={availableDownloads.length}
+              numberSelectedRows={selected.length}
+            />
+            <DownloadButton selectedData={selected} />
+          </StyledTableActions>
+        ) : (
+          <StyledErrorMessage>Oh no! We couldn&apos;t find any data to display.</StyledErrorMessage>
+        )}
         <StyledTable>
           <TableColumnHeaders columnNames={columnNames} />
           <tbody>
