@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StyledRow = styled.tr`
   border-top: 1px solid #e6e6e6;
-  background: ${(props) => (props.$isChecked ? '#eeeef2' : 'inherit')};
+  background: ${(props) => (props.$isChecked ? '#eeeef5' : 'inherit')};
   font-size: 12px;
   &:hover {
     background: #f5f5f5;
