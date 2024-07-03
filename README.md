@@ -1,12 +1,5 @@
 # UI Custom Table
 
-## Table of Contents
-
-- [Commands](#commands)
-- [Technologies Used](#technologies-used)
-- [My Approach](#my-approach)
-- [Additional Notes](#a-few-extras-I'd-like-to-point-out)
-
 ## Commands
 
 - `npm i` to install all project dependencies
@@ -28,7 +21,8 @@ In approaching this project, I chose to make the `Table` component as reusable a
 
 This architecture gives developers more control over the prop data that is passed to the `Table` component, making it more reusable. If we wanted the `Table` component to be more fit to purpose, the hook could be moved into the component itself and called there.
 
-## A few extras I'd like to point out:
+## Additional Notes:
+A few features I'd like to point out:
 
 ### Responsive Design
 
