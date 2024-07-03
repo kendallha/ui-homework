@@ -5,9 +5,7 @@
 - [Commands](#commands)
 - [Technologies Used](#technologies-used)
 - [My Approach](#my-approach)
-- [Accessibility](#accessibility)
-- [Responsive Design](#responsive-design)
-- [Error Handling](#error-handling)
+- [Additional Notes](#a-few-extras-I'd-like-to-point-out)
 
 ## Commands
 
