@@ -30,26 +30,12 @@ In approaching this project, I chose to make the `Table` component as reusable a
 
 This architecture gives developers more control over the prop data that is passed to the `Table` component, making it more reusable. If we wanted the `Table` component to be more fit to purpose, the hook could be moved into the component itself and called there.
 
-## Accessibility
-
-- 100% Lighthouse accessibility score
-<img src="https://github.com/kendallha/ui-homework/assets/25498241/d7a82a77-4d38-4fa9-8a4e-b73ddce47d5d" width="400">
-
 ## A few extras I'd like to point out:
 
 ### Responsive Design
 
-- At smaller screen sizes, the table has a horizontal scrollbar to view overflow content. Gif displays iPhone Pro 12 from responsive tool in Chrome dev tools.
-
-<img src="https://github.com/kendallha/ui-homework/assets/25498241/ff923fb6-9d93-4289-a30b-0669036af38a" width="200">
-
+- At smaller screen sizes, the table has a horizontal scrollbar to view overflow content.
 
 ### Error Handling
 
-- An error message displays when no table data could be found. In future iterations, this could be updated to pass more informative error messages to the `Table`component.
-
-<img src="https://github.com/kendallha/ui-homework/assets/25498241/29058396-1535-4bdd-9dd3-e40b7afd7e83" width="400">
-
-
-
-
+- An error message displays when no table data could be found. In future iterations, this could be updated to pass more informative error messages to the `Table` component.
