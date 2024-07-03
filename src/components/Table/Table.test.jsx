@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import Table from './Table';
 import { tableData, availableDownloads, columnNames } from '../../mockData';
 
@@ -58,6 +59,14 @@ describe('Table', () => {
     fireEvent.click(checkbox2);
     expect(selectAllCheckbox).not.toBeChecked();
     expect(screen.getByRole('checkbox', { name: /Select All Checkbox/i, indeterminate: false })).toBeInTheDocument();
+  });
+
+  it('should trigger an alert when the download button is enabled and clicked', () => {
+    window.alert = vi.fn();
+    const checkbox1 = screen.getByRole('checkbox', { name: /uxtheme.dll/i });
+    fireEvent.click(checkbox1);
+    fireEvent.click(screen.getByRole('button', { name: /download/i }));
+    expect(window.alert).toHaveBeenCalled();
   });
 });
 

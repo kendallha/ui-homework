@@ -1,5 +1,4 @@
 import icon from '../../assets/download.svg';
-import { getDownloadMessageFromData } from '../../utils/getDownloadMessageFromData';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -29,16 +28,11 @@ const StyledIcon = styled.img`
   margin-right: 5px;
 `;
 
-const DownloadButton = ({ selectedData }) => {
-  const handleDownloadClick = () => {
-    const downloadMessage = getDownloadMessageFromData(selectedData);
-    alert(`Confirm to download these files: ${downloadMessage}`);
-  };
-
+const DownloadButton = ({ handleDownloadClick, isDisabled }) => {
   return (
     <StyledDownloadButtonSection>
-      <StyledButton aria-label="download" disabled={!selectedData.length} type="button" onClick={handleDownloadClick}>
-        <StyledIcon $disabled={!selectedData.length} src={icon} alt="Download Icon" width="24" height="24" />
+      <StyledButton aria-label="download" disabled={isDisabled} type="button" onClick={handleDownloadClick}>
+        <StyledIcon $disabled={isDisabled} src={icon} alt="Download Icon" width="24" height="24" />
         <StyledButtonLabel>Download Selected</StyledButtonLabel>
       </StyledButton>
     </StyledDownloadButtonSection>
@@ -48,5 +42,6 @@ const DownloadButton = ({ selectedData }) => {
 export default DownloadButton;
 
 DownloadButton.propTypes = {
-  selectedData: PropTypes.array,
+  handleDownloadClick: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };

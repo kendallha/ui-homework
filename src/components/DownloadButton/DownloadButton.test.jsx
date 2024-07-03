@@ -5,15 +5,15 @@ import { availableDownloads } from '../../mockData';
 
 describe('DownloadButton', () => {
   it('should not be able to be clicked when disabled', () => {
-    render(<DownloadButton selectedData={[]} />);
+    render(<DownloadButton isDisabled={true} />);
     const button = screen.getByRole('button');
     expect(button).not.toBeEnabled();
   });
 
   it('should trigger an alert when enabled and clicked', () => {
-    window.alert = vi.fn();
-    render(<DownloadButton selectedData={availableDownloads} />);
+    const handleDownloadClick = vi.fn();
+    render(<DownloadButton selectedData={availableDownloads} handleDownloadClick={handleDownloadClick} />);
     fireEvent.click(screen.getByRole('button'));
-    expect(window.alert).toHaveBeenCalled();
+    expect(handleDownloadClick).toHaveBeenCalled();
   });
 });

@@ -3,6 +3,7 @@ import DownloadButton from '../DownloadButton/DownloadButton';
 import SelectAllDisplay from '../SelectAllDisplay/SelectAllDisplay';
 import TableColumnHeaders from '../TableColumnHeaders/TableColumnHeaders';
 import TableRow from '../TableRow/TableRow';
+import { getDownloadMessageFromData } from '../../utils/getDownloadMessageFromData';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -29,6 +30,13 @@ const StyledErrorMessage = styled.p`
 
 const Table = ({ availableDownloads, columnNames, tableData }) => {
   const [selected, setSelected] = useState([]);
+
+  const handleDownloadClick = () => {
+    const downloadMessage = getDownloadMessageFromData(selected);
+    alert(`Confirm to download these files: ${downloadMessage}`);
+    // after the "download" is complete, we want to deselect all selected items
+    setSelected([]);
+  };
 
   const handleSelectAll = (isSelected) => {
     if (isSelected) {
@@ -57,7 +65,7 @@ const Table = ({ availableDownloads, columnNames, tableData }) => {
               numberAvailableDownloads={availableDownloads.length}
               numberSelectedRows={selected.length}
             />
-            <DownloadButton selectedData={selected} />
+            <DownloadButton handleDownloadClick={handleDownloadClick} isDisabled={!selected.length} />
           </StyledTableActions>
         ) : (
           <StyledErrorMessage>Oh no! We couldn&apos;t find any data to display.</StyledErrorMessage>
